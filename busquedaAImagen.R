@@ -36,6 +36,6 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
     }
   idHist<-rbind(idHist,idf)
   idHist <- unique(idHist)
-  write.table(idHist,file = paste(local_directory,termimo,"_Hist",sep=" "),sep=";",row.names = FALSE,col.names = FALSE)
+  write.table(idHist,file = paste(local_directory,termino,"_Hist",sep=" "),sep=";",row.names = FALSE,col.names = FALSE)
   }
 }
