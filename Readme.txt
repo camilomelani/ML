@@ -8,4 +8,4 @@ http://stackoverflow.com/questions/24438517/using-haar-cascade-classifier-in-ope
 http://answers.opencv.org/question/39160/opencv_traincascade-parameters-explanation-image-sizes-etc/
 http://docs.opencv.org/3.1.0/dc/d88/tutorial_traincascade.html#gsc.tab=0
 http://abhishek4273.com/2014/03/16/traincascade-and-car-detection-using-opencv/
-  
+ https://github.com/abhi-kumar/CAR-DETECTION 
