@@ -5,7 +5,7 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
   }
   else
   {
-    idHist <- read.table(paste(local_directory,termino,sep=" "),sep=";")
+    idHist <- read.table(paste(local_directory,termino,"_Hist",sep=""),sep=";")
     names(idHist)<-c("id")
   }
   
@@ -36,6 +36,6 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
     }
   idHist<-rbind(idHist,idf)
   idHist <- unique(idHist)
-  write.table(idHist,file = paste(local_directory,termino,"_Hist",sep=" "),sep=";",row.names = FALSE,col.names = FALSE)
+  write.table(idHist,file = paste(local_directory,termino,"_Hist",sep=""),sep=";",row.names = FALSE,col.names = FALSE)
   }
 }
