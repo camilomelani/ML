@@ -16,7 +16,7 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
     for (j in 1:nrow(idf))
     {
       id=idf$id[j]
-      if (!(is.element(id, idAutosHist$id)))
+      if (!(is.element(id, idHist$id)))
       {
         item <- fromJSON(paste("https://api.mercadolibre.com/items/",id,sep=""))
         pictures<-item$pictures

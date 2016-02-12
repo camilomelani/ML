@@ -1,11 +1,10 @@
-#install.packages("jsonlite")
-#install.packages("curl")
-#install.packages("doParallel")
+install.packages("jsonlite")
+install.packages("curl")
+install.packages("doParallel")
 
 
-setwd("/home/cmelani/Documents/github/ML")
+#setwd("/home/cmelani/Documents/github/ML")
 source("busquedaAImagen.R")
-
 
 
 library(jsonlite)
