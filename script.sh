@@ -16,23 +16,24 @@ entranarClasificador()
 {
    declare -a DirPositivas=("${!1}")
    declare -a DirNegativas=("${!2}")
-   declare -a DirOutput=$3
+   declare -a DirOutput=($3)
 
-   echo "${DirPositivas[@]}"
-   echo "${DirNegativas[@]}"
-   echo $DirOutput
-
+   echo "Imagenes positivas" "${DirPositivas[@]}"
+   echo "Imagenes Negativas" "${DirNegativas[@]}"
+   echo "Directoriod de salida" $DirOutput
 
    rm positivas.info
-   touch positivas.info
+   rm positivas1.tmp
+   rm positivas2.tmp
+   touch positivas1.tmp
+
 
    for d in "${DirPositivas[@]}"
    do
-	find $d -iname "*.jpg" -exec identify \{\}   \; | cut -d' ' -f1,3 >> positivas.info
+	find $d -iname "*.jpg" -exec identify \{\}   \; | cut -d' ' -f1,3 >> positivas1.tmp
    done
-
-   sed 's/ / 1 0 0 /g' positivas.info > positivas.info
-   sed 's/x/ /g' positivas.info > positivas.info
+   sed 's/ / 1 0 0 /g' positivas1.tmp > positivas2.tmp
+   sed 's/x/ /g' positivas2.tmp > positivas.info
    var=`cat positivas.info | wc -l`
    var=$(echo "scale=0;0.9*$var" |bc)
    CantImagenesPositivas=$(echo "$var/1" | bc )
@@ -52,9 +53,8 @@ entranarClasificador()
    CantImagenesNegativas=`cat NoCars.txt | wc -l`
 
    rm -fr $DirOutput
-   opencv_traincascade -data $DirOutput -vec cars.vec -bg NoCars.txt \
-      -numStages 10 -nsplits 2 -minhitrate 0.999 -maxfalsealarm 0.5 \
-      -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
+   opencv_traincascade -data $DirOutput -vec positivas.vec -bg negativas.txt -numStages 10 -nsplits 2 -minhitrate 0.999 -maxfalsealarm 0.5 -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
+   touch positivas1.tmp
 }
 
 
