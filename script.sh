@@ -56,7 +56,6 @@ entranarClasificador()
    mkdir $DirOutput
 
    opencv_traincascade -data $DirOutput -vec positivas.vec -bg negativas.txt -numStages 10 -nsplits 2 -minhitrate 0.999 -maxfalsealarm 0.5 -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
-   touch positivas1.tmp
 }
 
 
