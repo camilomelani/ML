@@ -58,18 +58,94 @@ entranarClasificador()
 }
 
 
-
+#Auto Exterior vs No Auto + Interior
 positivas=(
+	"ML_ClasificadasBN/imagenes_Auto_Atras"
+	"ML_ClasificadasBN/imagenes_Auto_Frontal"
         "ML_ClasificadasBN/imagenes_Auto_Frente"
         "ML_ClasificadasBN/imagenes_Auto_Costado"
 	)
 
 negativas=(
+        "ML_ClasificadasBN/imagenes_Auto"
         "ML_ClasificadasBN/imagenes_Casa"
+        "ML_ClasificadasBN/imagenes_Climatizacion"
+        "ML_ClasificadasBN/imagenes_Cocinas"
+        "ML_ClasificadasBN/imagenes_Electrodomesticos"
         "ML_ClasificadasBN/imagenes_Freezers"
+        "ML_ClasificadasBN/imagenes_Hornos"
+        "ML_ClasificadasBN/imagenes_Lavarropas"
+        "ML_ClasificadasBN/imagenes_Planchas"
+        "ML_ClasificadasBN/imagenes_Plantas"
+        "ML_ClasificadasBN/imagenes_TV"
     )
+entranarClasificador positivas[@] negativas[@] "AutoExterior" 
 
-entranarClasificador positivas[@] negativas[@] "data" 
+#Auto Frente vs Auto Exterior - Auto Frente
+positivas=(
+        "ML_ClasificadasBN/imagenes_Auto_Frente"
+	)
+negativas=(
+        "ML_ClasificadasBN/imagenes_Auto_Costado"
+	"ML_ClasificadasBN/imagenes_Auto_Atras"
+	"ML_ClasificadasBN/imagenes_Auto_Frontal"
+    )
+entranarClasificador positivas[@] negativas[@] "AutoFrente" 
+
+#   Auto Frontal vs Auto Exterior - Auto Frontal
+positivas=(
+	"ML_ClasificadasBN/imagenes_Auto_Frontal"
+	)
+negativas=(
+        "ML_ClasificadasBN/imagenes_Auto_Costado"
+	"ML_ClasificadasBN/imagenes_Auto_Atras"
+        "ML_ClasificadasBN/imagenes_Auto_Frente"
+    )
+entranarClasificador positivas[@] negativas[@] "AutoFrontal" 
+
+
+
+#   Auto Costado vs Auto Exterios - Auto Costado
+positivas=(
+        "ML_ClasificadasBN/imagenes_Auto_Costado"
+	)
+negativas=(
+	"ML_ClasificadasBN/imagenes_Auto_Frontal"
+	"ML_ClasificadasBN/imagenes_Auto_Atras"
+        "ML_ClasificadasBN/imagenes_Auto_Frente"
+    )
+entranarClasificador positivas[@] negativas[@] "AutoCostado" 
+
+#   Auto Atras vs Auto Exterior - Auto Atras
+positivas=(
+	"ML_ClasificadasBN/imagenes_Auto_Atras"
+	)
+negativas=(
+        "ML_ClasificadasBN/imagenes_Auto_Costado"
+	"ML_ClasificadasBN/imagenes_Auto_Frontal"
+        "ML_ClasificadasBN/imagenes_Auto_Frente"
+    )
+entranarClasificador positivas[@] negativas[@] "AutoAtras" 
+
+
+#   Auto interior vs No auto
+positivas=(
+        "ML_ClasificadasBN/imagenes_Auto"
+	)
+negativas=(
+        "ML_ClasificadasBN/imagenes_Casa"
+        "ML_ClasificadasBN/imagenes_Climatizacion"
+        "ML_ClasificadasBN/imagenes_Cocinas"
+        "ML_ClasificadasBN/imagenes_Electrodomesticos"
+        "ML_ClasificadasBN/imagenes_Freezers"
+        "ML_ClasificadasBN/imagenes_Hornos"
+        "ML_ClasificadasBN/imagenes_Lavarropas"
+        "ML_ClasificadasBN/imagenes_Planchas"
+        "ML_ClasificadasBN/imagenes_Plantas"
+        "ML_ClasificadasBN/imagenes_TV"
+    )
+entranarClasificador positivas[@] negativas[@] "InteriorAuto" 
+
 
 
 
