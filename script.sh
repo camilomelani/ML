@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 #find ML_ClasificadasBN/imagenes_Auto -iname "*.jpg" -exec echo \{\} \; >> cars.info
 #/home/camilo/Documents/ML/
@@ -14,20 +14,17 @@
 
 entranarClasificador()
 {
-    declare -a DirPositivas=("${!1}")
+   declare -a DirPositivas=("${!1}")
+   declare -a DirNegativas=("${!2}")
+   declare -a DirOutput=$3
 
-    declare -a DirNegativas=("${!2}")
+   echo "${DirPositivas[@]}"
+   echo "${DirNegativas[@]}"
+   echo $DirOutput
 
-    declare -a DirOutput=("${!3}")
 
-    echo "${DirPositivas[@]}"
-    echo "${DirNegativas[@]}"
-    echo "${DirOutput[@]}"
-
-exit
-
-    rm positivas.info
-    touch positivas.info
+   rm positivas.info
+   touch positivas.info
 
    for d in "${DirPositivas[@]}"
    do
@@ -60,18 +57,19 @@ exit
       -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
 }
 
-   local positivas=(
+
+
+positivas=(
         "ML_ClasificadasBN/imagenes_Auto_Frente"
         "ML_ClasificadasBN/imagenes_Auto_Costado"
-    )
+	)
 
-   local negativas=(
+negativas=(
         "ML_ClasificadasBN/imagenes_Casa"
         "ML_ClasificadasBN/imagenes_Freezers"
     )
 
-
-entrenarClasificador positivas[@] negativas[@] data
+entranarClasificador positivas[@] negativas[@] "data" 
 
 
 
