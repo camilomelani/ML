@@ -16,7 +16,7 @@ vehicle_classifier = cv2.CascadeClassifier('data/cascade.xml')
 gray = cv2.imread(inputfile,0)
     
 a = datetime.datetime.now()
-autos = vehicle_classifier.detectMultiScale(gray, 3, 5, maxSize=(600,400),minSize=(300,200))
+autos = vehicle_classifier.detectMultiScale(gray, 3, 5, maxSize=(800,400),minSize=(300,150))
 b = datetime.datetime.now()
 print(b-a)
 
