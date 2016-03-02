@@ -12,7 +12,7 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
   for (i in offset:(offset+cantPaginas)){
     print(paste("i",i))
     
-    items <- fromJSON(paste("https://api.mercadolibre.com/sites/MLV/search?q=",termino,"&offset=",i,sep=""))
+    items <- fromJSON(paste("https://api.mercadolibre.com/sites/MLA/search?q=",termino,"&offset=",i,sep=""))
     
     idf <-data.frame(id=items$results$id)
     print(idf)
@@ -26,7 +26,7 @@ busquedaAImagen<-function(termino,offset,cantPaginas,destino,refreshData){
         urls<-item$pictures$url
         ids<-item$pictures$id
         p<-1
-#        foreach(p=1:length(pictures$url)) %dopar%  
+        foreach(p=1:length(pictures$url)) %dopar%  
               {
                 filename<-paste(destino,"/",pictures$id[p],".jpg",sep="")
                 print(filename)

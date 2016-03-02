@@ -15,7 +15,7 @@ registerDoParallel(cl)
 
 local_directory <- "/home/camilo/Documents/ML/Imagenes/"
 
-refreshData=FALSE
+refreshData=TRUE
 termino<-"Auto"
 outputDir<-paste(local_directory, "imagenes_", termino, sep="")
 dir.create(file.path(outputDir))
@@ -42,6 +42,8 @@ busquedaAImagen(termino,1,400,outputDir,refreshData)
 
 
 items<-c("Climatizacion", "Freezers", "Plantas", "Electrodomesticos", "Planchas","TV","Hornos","Cocinas","Lavarropas","Casa")
+items<-c("Tostadora","salud-y-belleza","Instrumentos Musicales","Animales y Mascotas"," Arte y Artesanías","Bebes","Computación","Cámaras y Accesorios")
+items<-c("Microondas")
 for (termino in items){
   print(termino)
   refreshData=TRUE
@@ -49,7 +51,7 @@ for (termino in items){
   if (!file.exists(outputDir)){
     dir.create(file.path(outputDir))
   }  
-  busquedaAImagen(termino,0,50,outputDir,refreshData)
+  busquedaAImagen(termino,0,10,outputDir,refreshData)
 }
 
 

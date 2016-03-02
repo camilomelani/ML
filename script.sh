@@ -34,12 +34,12 @@ entranarClasificador()
    done
    sed 's/ / 1 0 0 /g' positivas1.tmp > positivas2.tmp
    sed 's/x/ /g' positivas2.tmp > positivas.info
-   var=`cat positivas.info | wc -l`
-   var=$(echo "scale=0;0.9*$var" |bc)
+   CantImagenesP=`cat positivas.info | wc -l`
+   var=$(echo "scale=0;0.8*$CantImagenesP" |bc)
    CantImagenesPositivas=$(echo "$var/1" | bc )
 
 #opencv_createsamples
-   opencv_createsamples -info positivas.info -num $CantImagenesPositivas -w 48 -h 24 -vec positivas.vec
+   opencv_createsamples -num $CantImagenesP -info positivas.info -w 48 -h 24 -vec positivas.vec
 
    rm negativas.txt
    touch negativas.txt
@@ -50,12 +50,15 @@ entranarClasificador()
    done
 
 
-   CantImagenesNegativas=`cat NoCars.txt | wc -l`
+   CantImagenesN=`cat negativas.txt | wc -l`
+   var=$(echo "scale=0;0.7*$CantImagenesN" |bc)
+   CantImagenesNegativas=$(echo "$var/1" | bc )
+
 
    rm -fr $DirOutput
    mkdir $DirOutput
 
-   opencv_traincascade -data $DirOutput -vec positivas.vec -bg negativas.txt -numStages 10 -nsplits 2 -minhitrate 0.999 -maxfalsealarm 0.5 -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
+   opencv_traincascade -data $DirOutput -vec positivas.vec -bg negativas.txt -numStages 10 -nsplits 2 -minhitrate 0.8 -maxfalsealarm 0.5 -numPos $CantImagenesPositivas -numNeg $CantImagenesNegativas -w 48 -h 24 
 }
 
 
@@ -81,6 +84,7 @@ negativas=(
         "ML_ClasificadasBN/imagenes_TV"
     )
 entranarClasificador positivas[@] negativas[@] "AutoExterior" 
+
 
 #Auto Frente vs Auto Exterior - Auto Frente
 positivas=(
@@ -145,7 +149,7 @@ negativas=(
         "ML_ClasificadasBN/imagenes_Plantas"
         "ML_ClasificadasBN/imagenes_TV"
     )
-entranarClasificador positivas[@] negativas[@] "InteriorAuto" 
+entranarClasificador positivas[@] negativas[@] "AutoInterior" 
 
 
 
